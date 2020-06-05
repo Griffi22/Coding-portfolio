@@ -1,0 +1,15 @@
+Altitude correction values
+
+Helens = 17M
+
+physics building:= 80m
+
+source:https://routecalculator.co.uk/elevation
+
+physics building observatory = physics building+12m = 92m
+
+a to b floor ~3.72
+
+desk in b floor ~0.96
+total height of control detector from base fo building ~4.68m
+	save values to callable setting file

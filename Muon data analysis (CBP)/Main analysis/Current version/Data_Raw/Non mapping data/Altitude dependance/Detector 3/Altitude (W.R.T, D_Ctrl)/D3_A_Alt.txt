@@ -1,0 +1,3 @@
+0
+
+This is a measurment used to find the altitude dependance: therefor we dont want to correct this data by the altitude dependance. Therefor its altitude (relative to control) is set to 0
