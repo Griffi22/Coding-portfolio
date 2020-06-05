@@ -1,0 +1,103 @@
+Solar system simulation: READ.ME
+
+	SS_sim3: What is it?
+
+SS_sim3 is the perant program for the simulation, it is the prgram which the user will interactive with.
+SS_sim3 has 4 other functions aside from being a crude user interface.
+
+The first of these function is using a loop to repeatedly update bodies information
+ at set time intervals.
+The second is sending and feeding data from the user to the other programs that need it such and information
+about the intial stats of the system or the desired incremental time-steps.
+Thirdly the SS_sim3 program internally logs the data at each timestep using set 
+lists for each body this then enable SS_sim3 to internally plot the simulations results,
+this was important for the development faze external plotting slows down the simulation and often had 
+no benefit during development.
+		
+The final function of SS_sim3 is to externally log the data each timestep.
+This is done to an external file called "SimulationDataFile.npy" .
+
+
+
+	SS_sim3: User guide.
+
+	changing calcuation method.
+The simulation can run uses 2 different ways of updating planetary motion in its current verson.
+Euler forward motion updater, and Euler-romer motion updater.
+in order to select which of these methods to use please locate line 18. 
+once done replace the value on the RHS of the equation with either a "1" for Euler forwrd method and
+"2" for Euler-Cromer method.
+
+	editing variables
+In order to change the timescale of the simuation please locate the line 22.
+ where it says Time final on the RHS please replace the default values with your desired simulation length (seconds).
+
+In order to change the time-tep of the simuation please locate the line 23.
+ where it says Time step, on the RHS please replace the default values with your desired simulation timestep* (seconds). 
+
+*The larger your timestep the faster your simulation will run but the less accurately it will approximate motion.
+
+Laststly inputting the desired bodies into your system please locate lines 34 to 46, here is where the bodies data is stored
+please start a new line and enter the body and corrisponding data in this format,
+
+Name = Particle.Particle([x,y,z], [V_x,V_y,V_z], [A_x,A_y,A_z], "Name", Mass, Kinetic energy deltaT)
+
+replace all the placeholder varibles with your own data (keeping to the strict ordered format shown)
+ except for one varible, deltaT must be left as deltaT for the simulation function properly
+lastly locate line 50 and append your body(s) to the end of the list here making sure to 
+enter the name inside both brackets and to seperate each name by "," .
+
+
+ 
+	Particle: What is it?
+
+Particle has 2 total functions, 1 of which is acheived using 1 of two methods.
+Particle takes the data of a body and updates the position and velocity vectors using either
+EUler forward or Euler_Cromer depending on what the user has selected in SS_sim3.
+The other function fo particle is to take the Kinetic energy and to update it using the newly calculate velocity of a body.
+
+	Particle: User guide
+
+The user should not need to edit this program in any way provided they have used the SS_sim3 user input correctly.
+
+	Acc_calc: What is it?
+
+Also known as solar_system Acc_calc has 1 function which is to update the acceleration of each body.
+To do this acc calc takes a body out of the list of bodies
+and finds the acceleration acting upon this body from all the other bodies in the list
+it then returns this value to SS_sim3. once the value is return Acc_calc then repeats this for the next body and so on,
+until all bodies have been updated.
+
+
+	Acc_calc: User guide
+
+The user should not need to edit this program in any way provided they have used the SS_sim3 user input correctly.
+
+
+	Analysis: What is it?
+
+The analysis program has 3 functions to load and read data from an external file,
+to internally log this data and to plot the resulting data for the user.
+
+This program is used when a long simulation is ran and the uer wants to
+preform analysis on the data without rerunning the simulation.
+This is mostly useful for running multiple anaysis and plots of a single simulation.
+
+	Analysis:User guide
+
+The default analysis file will plot 3 things over the simulation's original timescale.
+firstly the motion of the bodies in 3 spacial dimentions will be plotted.
+The kinetic energy of each body will be plotted on a log(KE) scale against time and the total kenetic energy 
+of the system against time.  If the user wants to preform additional analysis or plots
+they will need to edit the program differently depending on the analysis they want to produce.
+The main adivce for this is for ammature coders to attempt to mirror the format of
+the premade plotting functions whenever relevant.
+
+
+
+
+
+
+
+
+
